@@ -2,9 +2,9 @@ import sys
 import pdb
 
 class ForkedPdb(pdb.Pdb):
-    """A Pdb subclass that may be used
-    from a forked multiprocessing child
-
+    """
+    PDB Subclass for debugging multi-processed code
+    Suggested in: https://stackoverflow.com/questions/4716533/how-to-attach-debugger-to-a-python-subproccess
     """
     def interaction(self, *args, **kwargs):
         _stdin = sys.stdin
