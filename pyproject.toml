@@ -1,9 +1,9 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-  "setuptools>=80.3",
-  "wheel>=0.45.0",
-  "packaging>=25.0",
+  "setuptools",
+  "wheel",
+  "packaging",
 ]
 
 [project]
@@ -98,3 +98,21 @@ addopts = [
   "--color=yes",
   "--disable-pytest-warnings",
 ]
+
+[tool.mypy]
+files = [
+    "src",
+]
+install_types = true
+non_interactive = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+allow_redefinition = true
+# disable this rule as the Trainer attributes are defined in the connectors, not in its __init__
+disable_error_code = "attr-defined"
+# style choices
+warn_no_return = false
