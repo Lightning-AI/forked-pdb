@@ -30,6 +30,7 @@ classifiers = [
 #]
 
 optional-dependencies.test = [
+  "coverage>=7.2.0",
   "pytest>=8.1.1",
   "pytest-rerunfailures>=14",
   "pytest-timeout>=2.3.1",
