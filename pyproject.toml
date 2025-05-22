@@ -8,7 +8,6 @@ requires = [
 
 [project]
 name = "fpdb"
-version = "0.0.0.dev2"
 description = "Python package for debugging multi-processed code using PDB."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -25,6 +24,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
 ]
+dynamic = ["version"]
 #dependencies = [
 #  "pdb",
 #]
@@ -41,6 +41,9 @@ optional-dependencies.typing = [
 urls.documentation = "https://github.com/lightning-AI/litgpt/tutorials"
 urls.homepage = "https://github.com/Lightning-AI/forked-pdb"
 #scripts.litgpt = "litgpt.__main__:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "fpdb.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
