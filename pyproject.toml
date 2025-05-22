@@ -1,14 +1,13 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-  "setuptools>=80.3",
-  "wheel>=0.45.0",
-  "packaging>=25.0",
+  "setuptools",
+  "wheel",
+  "packaging",
 ]
 
 [project]
 name = "fpdb"
-version = "0.0.0.dev2"
 description = "Python package for debugging multi-processed code using PDB."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -25,18 +24,26 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
 ]
+dynamic = ["version"]
 #dependencies = [
 #  "pdb",
 #]
 
 optional-dependencies.test = [
+  "coverage>=7.2.0",
   "pytest>=8.1.1",
   "pytest-rerunfailures>=14",
   "pytest-timeout>=2.3.1",
 ]
+optional-dependencies.typing = [
+  "mypy>=1.5.0",
+]
 urls.documentation = "https://github.com/lightning-AI/litgpt/tutorials"
 urls.homepage = "https://github.com/Lightning-AI/forked-pdb"
 #scripts.litgpt = "litgpt.__main__:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "fpdb.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -91,3 +98,21 @@ addopts = [
   "--color=yes",
   "--disable-pytest-warnings",
 ]
+
+[tool.mypy]
+files = [
+    "src",
+]
+install_types = true
+non_interactive = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+allow_redefinition = true
+# disable this rule as the Trainer attributes are defined in the connectors, not in its __init__
+disable_error_code = "attr-defined"
+# style choices
+warn_no_return = false

@@ -1,5 +1,6 @@
 import pdb
 import sys
+from typing import Any
 
 
 class ForkedPdb(pdb.Pdb):
@@ -8,7 +9,7 @@ class ForkedPdb(pdb.Pdb):
     Suggested in: https://stackoverflow.com/questions/4716533/how-to-attach-debugger-to-a-python-subproccess
     """
 
-    def interaction(self, *args, **kwargs):
+    def interaction(self, *args: Any, **kwargs: Any) -> None:
         _stdin = sys.stdin
         try:
             sys.stdin = open("/dev/stdin")
